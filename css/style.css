@@ -9,17 +9,15 @@
     --white: #FFFFFF;
 }
 
-* {
-    margin: 0;
-}
-
-body {
+html {
     background-color: var(--border-color);
     box-sizing: border-box;
 }
 
-h1, p, span {
+*, *::after, *::before {
+    box-sizing: inherit;
     cursor: default;
+    margin: 0;
 }
 
 .main-grid-container {
