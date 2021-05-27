@@ -1,58 +1,61 @@
 :root {
     --primary-font: 'Special Elite', cursive;
     --secondary-font: 'Ewert', cursive;
-    --border-color: #3B3B3B;
-    --border-style: 3px var(--border-color) solid;
     --black: #000000;
     --blue: #0D7FBE;
+    --border-color: #3B3B3B;
     --red: #F50F0F;
     --yellow: #FAE317;
     --white: #FFFFFF;
 }
 
-body {
-    box-sizing: border-box;
+* {
     margin: 0;
-    height: 100%;
-    width: 100%;
 }
 
-h1, p {
+body {
+    background-color: var(--border-color);
+    box-sizing: border-box;
+}
+
+h1, p, span {
     cursor: default;
-}
-
-.container {
-    overflow: hidden;
-    position: relative;
-    height: 100vh;
-    width: 100%;
 }
 
 .main-grid-container {
     display: grid;
+    gap: 5px;
     grid-template-areas: "white0 white0 white1 white1 white1 yellow0 yellow0 blue0 blue0 yellow1 black0 white2 white2 white2" "white3 red0 red0 red0 red0 yellow2 yellow2 blue0 blue0 yellow3 yellow3 white4 white4 yellow4" "white3 red0 red0 red0 red0 yellow2 yellow2 red1 red1 black1 black1 white4 white4 yellow4" "white5 red0 red0 red0 red0 white6 white7 red1 red1 white8 white8 black2 black2 yellow4" "white5 red0 red0 red0 red0 white6 white7 white9 white9 white10 white10 black2 black2 white11" "white5 black3 black3 white12 white12 white13 white13 white14 white15 blue1 blue1 blue1 blue1 white11" "yellow5 black3 black3 white16 white16 blue2 blue2 white14 white15 blue1 blue1 blue1 blue1 white11" "yellow5 white17 white17 black4 black4 blue2 blue2 yellow6 yellow6 blue1 blue1 blue1 blue1 white18" "yellow5 white17 white17 yellow7 white19 red2 red2 yellow6 yellow6 blue1 blue1 blue1 blue1 white18" "white20 white20 white20 yellow7 white19 red2 red2 white21 black5 white22 white22 white22 white23 white23";
     grid-template-columns: 3fr 1fr 3fr repeat(2, 2fr) repeat(4, 3fr) repeat(2, 2fr) 3fr 1fr 3fr;
     grid-template-rows: repeat(10, 1fr);
     overflow: hidden;
     position: absolute;
-    height: 100%;
+    height: 100vh;
     width: 100%;
 }
 
 .main-grid-container>div {
-    border: var(--border-style);
     display: grid;
     place-content: center;
     font-family: var(--secondary-font);
-    font-size: 60px;
     font-size: 3.5vw;
 }
+
+#lena-photo {
+    grid-area: 1 / 6 / 11 / 10;
+    place-self: center;
+    position: absolute;
+    z-index: 3;
+    height: 100%;
+    width: auto;
+}
+
+/* PAGE TEXTS */
 
 #verse {
     color: var(--yellow);
     font-family: var(--primary-font);
     font-size: 5vh;
-    margin: 0;
     writing-mode: sideways-lr;
     -webkit-text-stroke-color: var(--white);
     -webkit-text-stroke-width: 2px;
@@ -62,7 +65,6 @@ h1, p {
     font-family: var(--primary-font);
     font-size: 7.5vw;
     grid-area: 1 / 6 / 3 / 10;
-    margin: 0;
     position: absolute;
     text-align: center;
     text-transform: uppercase;
@@ -75,21 +77,11 @@ h1, p {
     color: var(--white);
 }
 
-#lena-photo {
-    grid-area: 1 / 6 / 11 / 10;
-    place-self: center;
-    position: absolute;
-    z-index: 3;
-    height: 100%;
-    width: auto;
-}
-
 [id ^="speech-"] {
     color: var(--yellow);
     font-family: var(--primary-font);
     letter-spacing: -0.75px;
     line-height: 32px;
-    margin: 0;
     padding: 10px;
     position: absolute;
     text-align: justify;
@@ -105,10 +97,11 @@ h1, p {
 }
 
 #speech-second-half {
-    font-size: 1.6vw;
+    font-size: 1.5vw;
     grid-area: 7 / 10 / 11 / 14;
-    padding-top: 0;
 }
+
+/* AREAS BACKGROUND-IMAGE */
 
 [class *="bg-img"] {
     background-position: center;
@@ -120,6 +113,11 @@ h1, p {
     background-image: url("../assets/lena-behind.png");
 }
 
+.bg-img-blured-lena {
+    background-image: url("../assets/blured-lena.png");
+    grid-area: 1 / 10 / 4 / 12;
+}
+
 .bg-img-jules {
     background-image: url("../assets/jules.png");
 }
@@ -127,22 +125,13 @@ h1, p {
 .bg-img-binary-code-girl {
     background-image: url("../assets/binary-code-girl.jpg");
     grid-area: 7 / 1 / 11 / 4;
-    margin: 2.5px;
 }
 
-.bg-img-blured-lena {
-    background-image: url("../assets/blured-lena.png");
-    grid-area: 1 / 10 / 4 / 12;
-    margin: 2.5px;
-}
+/* OPACITIES */
 
 .main-grid-container [class *="opacity"] {
-    border: none;
-    position: absolute;
-    left: 2.5px;
-    top: 2.5px;
-    height: calc(100% - 5px);
-    width: calc(100% - 5px);
+    align-self: stretch;
+    justify-self: stretch;
     z-index: 4;
 }
 
@@ -177,6 +166,8 @@ h1, p {
 .opacity-80 {
     opacity: 0.8;
 }
+
+/* GRID COLOR ITEMS */
 
 [class ^="black"] {
     background-color: var(--black);
@@ -398,6 +389,8 @@ h1, p {
     grid-area: white23;
 }
 
+/* QUERIES */
+
 @media (max-height: 700px) {
     #speech-first-half {
         font-size: 5vh;
@@ -414,6 +407,10 @@ h1, p {
 }
 
 @media (max-width: 1400px) {
+    [id ^="speech-"] {
+        letter-spacing: initial;
+        line-height: initial;
+    }
     #magazine-title {
         font-size: 10vw;
         grid-area: 1 / 5 / 3 / 11;
@@ -425,7 +422,7 @@ h1, p {
     }
     #speech-second-half {
         font-size: 2.1vw;
-        grid-area: 7 / 9 / 11 / 15;
+        grid-area: 8 / 9 / 11 / 15;
     }
 }
 
@@ -454,7 +451,7 @@ h1, p {
     #speech-second-half {
         color: var(--black);
         font-size: 20px;
-        grid-area: 6 / 7 / 11 / 15;
+        grid-area: 8 / 7 / 11 / 15;
         -webkit-text-stroke-width: 0;
     }
 }
@@ -462,6 +459,12 @@ h1, p {
 @media (max-width: 500px) {
     .main-grid-container [class *="opacity"] {
         opacity: 0;
+    }
+    #lena-photo {
+        margin-right: 150px;
+    }
+    #speech-second-half {
+        grid-row-start: 7;
     }
 }
 
